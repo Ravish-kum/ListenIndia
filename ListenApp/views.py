@@ -15,7 +15,7 @@ def calling_listenIndia(request):
         model_instance = ListenIN.objects.get(pk=video_model_id)
         print(model_instance)
     try:
-        result = subprocess.run(r'python /home/ravish/Desktop/Listen_India/Listen_India.py /home/ravish/Desktop/Listen_India/ListenIndia/'+str(model_instance.video_file), shell=True, capture_output=True, text=True)
+        result = subprocess.run(r'python /home/ravish/Desktop/Listen_India/ListenIndia/Listen_India.py /home/ravish/Desktop/Listen_India/ListenIndia/'+str(model_instance.video_file), shell=True, capture_output=True, text=True)
         print(result)
         print("Command output:")
         print(result.stdout)
@@ -24,9 +24,9 @@ def calling_listenIndia(request):
 
 @csrf_exempt
 def home(request):
+    form = IndiaModelForm(request.POST, request.FILES)
     if request.method == 'POST':
         
-        form = IndiaModelForm(request.POST, request.FILES)
         if form.is_valid():
             listen_in_instance = form.save(commit=False)
             title = form.cleaned_data['title']
@@ -37,10 +37,11 @@ def home(request):
             print('here si the code',listen_in_instance.id)
             request.session['video_model_id'] = listen_in_instance.id
             calling_listenIndia(request)
-            
-            return render(request, 'base.html')
+            return HttpResponse('success_page')  # Redirect to a success page
         else:
             form = IndiaModelForm()
     else:
             print("No file uploaded")
+
     return render(request, "base.html",{'form': form})
+
