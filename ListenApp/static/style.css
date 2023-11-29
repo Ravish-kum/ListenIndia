@@ -1,0 +1,14 @@
+/* styles.css */
+body {
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Style for the navbar/header */
+  .navbar {
+    background-color: #3498db; /* Blue color - Change as desired */
+    color: white;
+    text-align: center;
+    padding: 20px 0; /* Adjust padding as needed */
+  }
+  

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>ListenIndia</title>
+  <link rel="stylesheet" href="static/styles.css"> <!-- Link to an external CSS file -->
+</head>
+
+<body>
+  <header class="navbar">
+    <h1>ListenIndia</h1>
+  </header>
+
+  <main>
+    <section>
+      <h2>Select File Destination Directory</h2>
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        <table>
+            <tr>
+                <th><label for="id_title">Title:</label></th>
+                <td>{{ form.title }}</td>
+            </tr>
+            <tr>
+                <th><label for="id_video_file">Video File:</label></th>
+                <td>{{ form.video_file }}</td>
+            </tr>
+            <tr>
+                <th><label for="id_language">Language:</label></th>
+                <td>{{ form.language }}</td>
+            </tr>
+            <!-- Other form fields -->
+        </table>
+        <button type="submit">Submit</button>
+    </form>
+    </section>
+  </main>
+</body>
+
+</html>
